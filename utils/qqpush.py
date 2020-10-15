@@ -12,6 +12,8 @@ class MsgList:
 class Qqpush:
     pushurl='https://wx.scjtqs.com/qq/push/pushMsg'
     def notify_qq(self,msg):
+        if msg in MsgList.msg_list:
+            return False
         MsgList.msg_list.append(msg)
         self.push(msg)
         self.clear_list()
@@ -20,15 +22,13 @@ class Qqpush:
         if IS_USE_QQ_PUSH!=True:
             return False
         jsonret=''
-        if data in MsgList.msg_list:
-            return
-        if PUSH_QQ>0:
+        if PUSH_QQ > 0:
             post = {}
             post['qq'] = PUSH_QQ
             post['content'] = [{"msgtype": "text", "text": data}]
             jsonret=self.post(post)
             print(jsonret)
-        if PUSH_GROUP>0:
+        if PUSH_GROUP > 0:
             post = {}
             post['group'] = PUSH_GROUP
             post['content'] = [{"msgtype": "text", "text": data}]
