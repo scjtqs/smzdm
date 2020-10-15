@@ -8,3 +8,4 @@
 - 关键字配置见 config.py
 
 - 消息推送使用[方糖 Server 酱](http://sc.ftqq.com/3.version), key 配置见 secret.py
+- 消息推送使用[qq推送](http://wx.scjtqs.com/qq/user), key 配置见 secret.py
