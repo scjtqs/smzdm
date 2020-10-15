@@ -2,6 +2,9 @@
 
 import datetime
 from utils.notify import notify_wx
+from utils.qqpush import Qqpush
+from secret import IS_USE_QQ_PUSH
+from secret import IS_USE_WX_PUSH
 
 
 def keyword_analysis(data, maps):
@@ -16,7 +19,11 @@ def keyword_analysis(data, maps):
             continue
         if not is_match(article_title.upper(), maps):
             continue
-        notify_wx(format_msg(article_title, article_url, article_mall, article_price))
+        if IS_USE_WX_PUSH:
+            notify_wx(format_msg(article_title, article_url, article_mall, article_price))
+        if IS_USE_QQ_PUSH:
+            Qqpush.notify_qq(format_msg(article_title, article_url, article_mall, article_price))
+
 
 
 def haojia_analysis(data, maps):
@@ -32,7 +39,11 @@ def haojia_analysis(data, maps):
             continue
         if not is_match(article_title.upper(), maps):
             continue
-        notify_wx(format_msg(article_title, article_url, article_mall, article_price))
+        if IS_USE_WX_PUSH:
+            notify_wx(format_msg(article_title, article_url, article_mall, article_price))
+        if IS_USE_QQ_PUSH:
+            Qqpush.notify_qq(format_msg(article_title, article_url, article_mall, article_price))
+
 
 
 def is_time_valid(time_int):
